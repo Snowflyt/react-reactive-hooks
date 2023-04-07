@@ -1846,10 +1846,10 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-reactive-hooks@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/react-reactive-hooks/-/react-reactive-hooks-0.1.2.tgz#9da3fac141334805a4ec329a0827f5a17538c06a"
-  integrity sha512-10KCHL1kk2IJ1hI062RJKaZyhQiYEhNjFYy/fhipAYHH9xbOEZ6NYpZAMe1kNxxzZkLVS7DLQVLDVbIl9MwSzQ==
+react-reactive-hooks@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-reactive-hooks/-/react-reactive-hooks-0.1.3.tgz#6c3ca29ed3b065dfd5107fdadadb82ccc2599341"
+  integrity sha512-DvW1PsExcLWkUUMgcy0bunHYFUr2Z96ChUzqwjgJADyspqP0ma04MMAFc4N4dmjBzs1BgQTBUpvP9uwqm5badg==
 
 react@^18.2.0:
   version "18.2.0"
