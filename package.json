@@ -1,0 +1,74 @@
+{
+  "name": "react-reactive-hooks",
+  "version": "0.1.1",
+  "description": "A set of React hooks for reactive programming",
+  "keywords": [
+    "react",
+    "reactjs",
+    "reactive",
+    "hooks",
+    "react-hooks"
+  ],
+  "homepage": "https://github.com/Snowfly-T/react-reactive-hooks",
+  "bugs": {
+    "url": "https://github.com/Snowfly-T/react-reactive-hooks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Snowfly-T/react-reactive-hooks"
+  },
+  "license": "MIT",
+  "author": "Snowflyt <gaoge011022@gmail.com>",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.umd.js"
+    }
+  },
+  "main": "./index.umd.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "scripts": {
+    "build": "npm run clean && tsc && vite build  && cpy ./dist/**/* ./build/ && rimraf dist && cpy ./package.json ./build/ && cpy ./README.md ./build/ && cpy ./LICENSE ./build/",
+    "clean": "rimraf dist build",
+    "format": "prettier --write {src,test}/**/*.{json,js,jsx,ts,tsx}",
+    "lint": "eslint {src,test}/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint --fix {src,test}/**/*.{js,jsx,ts,tsx}"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/lodash.clonedeep": "^4.5.7",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@vitejs/plugin-react": "^3.1.0",
+    "cpy-cli": "^4.2.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-sort-destructure-keys": "^1.5.0",
+    "immer": "^9.0.21",
+    "lodash.clonedeep": "^4.5.0",
+    "prettier": "^2.8.7",
+    "prettier-plugin-packagejson": "^2.4.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^4.4.1",
+    "typescript": "^5.0.3",
+    "vite": "^4.2.1",
+    "vite-plugin-dts": "^2.2.0",
+    "vite-plugin-linter": "^2.0.2",
+    "vite-tsconfig-paths": "^4.0.8"
+  },
+  "peerDependencies": {
+    "immer": ">=8.0.0",
+    "lodash.clonedeep": "^4.5.0",
+    "react": ">=16.8.0"
+  }
+}
