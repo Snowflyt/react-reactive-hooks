@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 /**
  * Produce a new state from the old state and a list of path and values.
@@ -55,7 +55,7 @@ const useReactive = <T extends object>(
   initialState: T | (() => T),
   options: UseReactiveOptions<T> = {},
 ): T => {
-  const [state, setState] = useState(() =>
+  const state = useRef(
     typeof initialState === 'function' ? initialState() : initialState,
   );
 
@@ -74,7 +74,9 @@ const useReactive = <T extends object>(
   );
 
   // A flag that indicates whether the state is changed
-  const [isDirty, setIsDirty] = useState(false);
+  const isDirty = useRef(false);
+
+  const [v, forceUpdate] = useState(false);
 
   /**
    * Get the cached value from the temp.
@@ -102,13 +104,12 @@ const useReactive = <T extends object>(
 
   /**
    * Schedule an update to the state.
-   * It should be called only at the end of a render for batch update.
    * @param path The path of the value.
    * @param value The new value.
    */
   const scheduleUpdate = useCallback(
     (path: Array<string | symbol>, value: unknown) => {
-      setIsDirty(true);
+      isDirty.current = true;
 
       // When there is at least one key of the path is a symbol,
       // use `tempValuesWithSymbolPath` to cache the value
@@ -129,14 +130,16 @@ const useReactive = <T extends object>(
       // use `tempValuesWithStringPath` to cache the value
       // The search is O(1)
       tempValuesWithStringPath.current.set(path.join('.'), value);
+
+      forceUpdate(!v);
     },
-    [],
+    [v],
   );
 
-  // Triggered when the state is changed
-  useLayoutEffect(() => {
-    if (!isDirty) return;
-
+  /**
+   * Batch update the state.
+   */
+  const batchUpdate = useCallback(() => {
     // Calculate the new state and clear the temps
     const pathAndValues = [...tempValuesWithSymbolPath.current.entries()];
     tempValuesWithSymbolPath.current.clear();
@@ -144,16 +147,16 @@ const useReactive = <T extends object>(
       pathAndValues.push([path.split('.'), value]);
     }
     tempValuesWithStringPath.current.clear();
-    const newState = produceNewState(state, pathAndValues);
+    const newState = produceNewState(state.current, pathAndValues);
 
-    // Set the dirty flag to avoid infinite loop
-    setIsDirty(false);
+    // Set the dirty flag to false to avoid unnecessary updates
+    isDirty.current = false;
 
     // An optional callback function can be called when the state is changed
-    options.onStateChange?.(state, newState);
+    options.onStateChange?.(state.current, newState);
 
-    setState(newState);
-  }, [isDirty]);
+    state.current = newState;
+  }, [options.onStateChange]);
 
   /**
    * Proxy an object (except for arrays and functions).
@@ -281,7 +284,12 @@ const useReactive = <T extends object>(
     [getCachedValue, scheduleUpdate],
   );
 
-  return proxyObject(state);
+  // Trigger batch update when state is changed
+  if (isDirty.current) {
+    batchUpdate();
+  }
+
+  return proxyObject(state.current);
 };
 
 export default useReactive;
