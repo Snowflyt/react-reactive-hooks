@@ -1865,10 +1865,10 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-reactive-hooks@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/react-reactive-hooks/-/react-reactive-hooks-0.1.4.tgz#97f4ebc208f791b5b71434a76f8fe335052bde5c"
-  integrity sha512-YBS/aRqMnz+COQxpYDOosJyQ++nG1xK33KInSnSGbTU9mOgxkkFGGfcrinPaicPGUbrxso3m4bmkAiFAzP8eIw==
+react-reactive-hooks@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-reactive-hooks/-/react-reactive-hooks-0.1.5.tgz#f93dcc38b53e9601ce22c1a54133a009b0cbb06f"
+  integrity sha512-IJ9ijIBXO96mAzIIna3xzqB+7U3lHX293WwlVGUWjRNC9VqlQHBowKUf8r4le1m2Q+P7CTIPCqsGUlop5vfWoQ==
   dependencies:
     immer ">=8.0.0"
     lodash.clonedeep "^4.5.0"

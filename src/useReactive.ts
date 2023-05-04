@@ -232,14 +232,16 @@ const useReactive = <T extends object>(
                   };
                 case 'pop':
                   return () => {
-                    const value = array.pop();
-                    scheduleUpdate(path, array);
+                    const newArray = [...array];
+                    const value = newArray.pop();
+                    scheduleUpdate(path, newArray);
                     return value;
                   };
                 case 'shift':
                   return () => {
-                    const value = array.shift();
-                    scheduleUpdate(path, array);
+                    const newArray = [...array];
+                    const value = newArray.shift();
+                    scheduleUpdate(path, newArray);
                     return value;
                   };
                 case 'unshift':
@@ -253,21 +255,24 @@ const useReactive = <T extends object>(
                     deleteCount: number,
                     ...items: T[]
                   ) => {
-                    const value = array.splice(start, deleteCount, ...items);
-                    scheduleUpdate(path, array);
+                    const newArray = [...array];
+                    const value = newArray.splice(start, deleteCount, ...items);
+                    scheduleUpdate(path, newArray);
                     return value;
                   };
                 case 'sort':
                   return (compareFn?: (a: T, b: T) => number) => {
-                    array.sort(compareFn);
-                    scheduleUpdate(path, array);
-                    return array;
+                    const newArray = [...array];
+                    newArray.sort(compareFn);
+                    scheduleUpdate(path, newArray);
+                    return newArray;
                   };
                 case 'reverse':
                   return () => {
-                    array.reverse();
-                    scheduleUpdate(path, array);
-                    return array;
+                    const newArray = [...array];
+                    newArray.reverse();
+                    scheduleUpdate(path, newArray);
+                    return newArray;
                   };
               }
             }
