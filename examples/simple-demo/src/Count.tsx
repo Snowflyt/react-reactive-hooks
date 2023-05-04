@@ -13,7 +13,7 @@ const Count = () => {
           store.count++;
           store.count++;
         }}>
-        Increment
+        Count+++
       </button>
     </>
   );

@@ -28,7 +28,10 @@ export default defineConfig((configEnv) => ({
         format === 'es' ? 'index.js' : `index.${format}.js`,
     },
     rollupOptions: {
-      external: [...Object.keys(packageJson['peerDependencies'] ?? {})],
+      external: [
+        ...Object.keys(packageJson['dependencies'] ?? {}),
+        ...Object.keys(packageJson['peerDependencies'] ?? {}),
+      ],
     },
   },
 }));
