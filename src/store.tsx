@@ -1,5 +1,6 @@
-import useReactive from './useReactive';
 import { createContext, useContext } from 'react';
+
+import useReactive from './useReactive';
 
 /**
  * A wrapper around a React Context and an initial state.

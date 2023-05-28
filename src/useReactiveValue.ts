@@ -1,11 +1,13 @@
 import useReactive from './useReactive';
 
+import type { ReactiveValue } from './types';
+
 /**
  * A hook that returns a reactive object with a `value` property.
  * @param value The initial value of the `value` property.
  * @returns
  */
-const useReactiveValue = <T>(value: T): { value: T } => {
+const useReactiveValue = <T>(value: T): ReactiveValue<T> => {
   const state = useReactive({ value });
 
   return new Proxy(state, {

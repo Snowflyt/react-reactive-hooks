@@ -1,5 +1,6 @@
-import globalStore from './store';
 import { useReactiveStore } from 'react-reactive-hooks';
+
+import globalStore from './store';
 
 const Count = () => {
   const store = useReactiveStore(globalStore);

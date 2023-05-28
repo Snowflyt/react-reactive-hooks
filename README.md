@@ -5,6 +5,7 @@ A set of React hooks to make your components reactive
 ## Features
 
 - Reactive state - `useReactive` and `useReactiveValue` like `reactive` and `ref` in Vue 3
+- Easy to use **bidirectional data binding** like `v-model` in Vue - `reactive` to create a “reactive” version of a component and then you can bind a `ReactiveValue` returned by `useReactiveValue` to the component using `model` prop
 - Easy undo/redo - `useReactiveUndo` to undo/redo changes to a reactive state
 - Cross component communication - `createReactiveStore` to create a reactive store and `useReactiveStore` to use it
 - High performance - Use immer to only update the changed parts of the state and use batched updates to avoid unnecessary re-renders
@@ -184,6 +185,40 @@ const Counter: React.FC = () => {
 ```
 
 > **WARNING:** `useReactiveUndo` deep clones the state when you call `undo` or `redo` to avoid some unexpected behaviors. So if you have a lot of data in the state, it may be slow.
+
+### `reactive`
+
+Sometimes you may recall `v-model` in Vue, which is a shorthand for `value={state}` and `onClick={(e) => setState(e.target.value)}`. `reactive` provides a similar API.
+
+```tsx
+import { Input } from '@chakra-ui/react';
+import { useReactiveValue, reactive } from 'react-reactive-hooks';
+
+const ReactiveInput = reactive(Input, ['value'], (model) => ({
+  onChange: (e) => {
+    model.value = e.target.value;
+  },
+}));
+
+// Use it in your component
+const LoginPage: React.FC = () => {
+  const username = useReactiveValue('');
+  const password = useReactiveValue('');
+
+  return (
+    <div>
+      <ReactiveInput model={username} />
+      <ReactiveInput model={password} />
+    </div>
+  );
+};
+```
+
+As you can see, the syntax is quite intuitive and easy to understand. `reactive` takes a component, a list of props to be passed to the component, and a function to create the event handlers. The function takes a `model` object as the only argument, and you can use it to set the value of the model.
+
+In this case, we use a `Input` component from Chakra UI, and we want to make the `value` prop reactive. So we pass `['value']` as the second argument to `reactive` (As you can see, it takes an array, so you can pass multiple prop names if you want to bind the ReactiveValue to multiple props). Then we create the `onChange` event handler in the third argument, it is just the same as the `onChange` event handler of the `Input` component, and the `model` object is just the `ReactiveValue` we passed to the `model` prop of `ReactiveInput`.
+
+Of course, you can use any event handler available on the component, in this case we use `onChange` on `Input`, but you can also use `onClick` on `Button`, `onSubmit` on `form`, etc.
 
 ### `createReactiveStore` and `useReactiveStore`
 

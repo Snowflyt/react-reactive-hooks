@@ -1,6 +1,7 @@
-import useReactive from './useReactive';
 import cloneDeep from 'lodash.clonedeep';
 import { useRef } from 'react';
+
+import useReactive from './useReactive';
 
 /**
  * A hook that returns a reactive object and functions to undo and redo changes.

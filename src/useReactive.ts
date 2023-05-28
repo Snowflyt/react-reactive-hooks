@@ -1,6 +1,8 @@
 import { produce } from 'immer';
 import { useCallback, useRef, useState } from 'react';
 
+import { Reactive } from './types';
+
 /**
  * Produce a new state from the old state and a list of path and values.
  * @param state The old state.
@@ -41,6 +43,7 @@ export interface UseReactiveOptions<T> {
  * @param initialState The initial state.
  * @param options Options.
  * @returns
+ *
  * @example
  * ```tsx
  * const state = useReactive({ count: 0 });
@@ -54,7 +57,7 @@ export interface UseReactiveOptions<T> {
 const useReactive = <T extends object>(
   initialState: T | (() => T),
   options: UseReactiveOptions<T> = {},
-): T => {
+): Reactive<T> => {
   const state = useRef(
     typeof initialState === 'function' ? initialState() : initialState,
   );
