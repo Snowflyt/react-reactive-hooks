@@ -1,7 +1,7 @@
 import { produce } from 'immer';
 import { useCallback, useRef, useState } from 'react';
 
-import { Reactive } from './types';
+import { Reactive } from '.';
 
 /**
  * Produce a new state from the old state and a list of path and values.

@@ -1,6 +1,6 @@
 import useReactive from './useReactive';
 
-import type { ReactiveValue } from './types';
+import type { ReactiveValue } from '.';
 
 /**
  * A hook that returns a reactive object with a `value` property.

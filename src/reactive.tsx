@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { ReactiveValue } from './types';
+import type { ReactiveValue } from '.';
 
 const reactive =
   <P extends object, VKS extends Array<keyof P>>(

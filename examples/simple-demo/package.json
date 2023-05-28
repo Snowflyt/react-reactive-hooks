@@ -16,7 +16,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-reactive-hooks": "^0.1.6"
+    "react-reactive-hooks": "^0.1.7"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
